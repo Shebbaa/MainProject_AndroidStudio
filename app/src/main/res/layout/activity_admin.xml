@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:padding="8dp">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Заявки (тап — пометить выполнено)" android:textStyle="bold"/>
+    <ListView android:id="@+id/lv_admin_requests" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Пользователи (тап — блок/разблок)" android:textStyle="bold" android:layout_marginTop="8dp"/>
+    <ListView android:id="@+id/lv_admin_users" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+</LinearLayout>

@@ -16,6 +16,7 @@ import java.util.List;
 
 public class StatisticsActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper;
+    private SessionManager session;
     private RecyclerView rvInProgress, rvCompleted;
     private RequestAdapter adapterInProgress, adapterCompleted;
 
@@ -30,6 +31,7 @@ public class StatisticsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Статистика");
 
         dbHelper = new DatabaseHelper(this);
+        session = new SessionManager(this); // <- сделали полем и инициализировали
 
         rvInProgress = findViewById(R.id.rv_in_progress);
         rvInProgress.setLayoutManager(new LinearLayoutManager(this));
@@ -42,11 +44,24 @@ public class StatisticsActivity extends AppCompatActivity {
         updateLists();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateLists(); // обновляем список при возврате на экран
+    }
+
     private void updateLists() {
-        List<Request> allRequests = dbHelper.getAllRequests();
+        // если не вошли в аккаунт — показываем подсказку и пустые списки
+        if (!session.isLoggedIn()) {
+            Toast.makeText(this, "Войдите в аккаунт, чтобы увидеть свои заявки", Toast.LENGTH_SHORT).show();
+            setAdapters(new ArrayList<>(), new ArrayList<>());
+            return;
+        }
+
+        List<Request> allRequests = dbHelper.getRequestsByUser(session.getUserId());
         List<Request> inProgress = new ArrayList<>();
         List<Request> completed = new ArrayList<>();
-
+        if (dbHelper.isAdmin(session.getUserId())) allRequests = dbHelper.getAllRequests();
         for (Request req : allRequests) {
             if ("В работе".equals(req.status)) {
                 inProgress.add(req);
@@ -55,6 +70,11 @@ public class StatisticsActivity extends AppCompatActivity {
             }
         }
 
+        setAdapters(inProgress, completed);
+
+    }
+
+    private void setAdapters(List<Request> inProgress, List<Request> completed) {
         adapterInProgress = new RequestAdapter(inProgress, request -> {
             dbHelper.completeRequest(request.id);
             Toast.makeText(this, "Заявка выполнена", Toast.LENGTH_SHORT).show();
@@ -75,4 +95,6 @@ public class StatisticsActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
+

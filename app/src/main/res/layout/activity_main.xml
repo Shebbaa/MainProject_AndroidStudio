@@ -8,6 +8,7 @@
     android:background="@color/background">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -22,6 +23,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/content_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -42,11 +44,13 @@
                 android:layout_marginBottom="12dp"
                 app:cardBackgroundColor="@color/card_background">
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="16dp">
+
 
                     <TextView
                         android:id="@+id/tv_date"
@@ -57,15 +61,68 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
+
                     <TextView
-                        android:id="@+id/tv_summary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Заявок в работе: 0\nВыполнено: 0"
-                        android:textColor="@color/text_secondary"
+                        android:text="Действия"
+                        android:textColor="@color/text_primary"
+                        android:textStyle="bold"
+                        android:textSize="16sp" />
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_login"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:text="Войти"
+                        android:textAllCaps="false"
+                        android:layout_marginTop="12dp"
+                        app:backgroundTint="@color/surface"
+                        android:textColor="@color/text_primary" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:text="Регистрация"
+                        android:textAllCaps="false"
                         android:layout_marginTop="8dp"
-                        android:textSize="14sp" />
+                        app:backgroundTint="@color/surface"
+                        android:textColor="@color/text_primary" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_questions"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:text="Вопросы"
+                        android:textAllCaps="false"
+                        android:layout_marginTop="8dp"
+                        app:backgroundTint="@color/surface"
+                        android:textColor="@color/text_primary" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:text="Профиль"
+                        android:textAllCaps="false"
+                        android:layout_marginTop="8dp"
+                        app:backgroundTint="@color/surface"
+                        android:textColor="@color/text_primary" />
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_statistics"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:text="Статистика"
+                        android:textAllCaps="false"
+                        android:layout_marginTop="12dp"
+                        app:backgroundTint="@color/surface"
+                        android:textColor="@color/text_primary" />
                 </LinearLayout>
+
             </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
@@ -149,30 +206,7 @@
                 app:cardElevation="6dp"
                 app:cardBackgroundColor="@color/card_background">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Действия"
-                        android:textColor="@color/text_primary"
-                        android:textStyle="bold"
-                        android:textSize="16sp" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_statistics"
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp"
-                        android:text="Статистика"
-                        android:textColor="@color/text_primary"
-                        app:backgroundTint="@color/surface"
-                        android:layout_marginTop="12dp" />
-
-                </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <View android:layout_width="match_parent" android:layout_height="24dp"/>
@@ -184,10 +218,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:layout_anchor="@id/coordinator_main"
+        app:layout_anchor="@id/content_scroll"
         app:layout_anchorGravity="bottom|end"
         app:backgroundTint="@color/surface"
         android:tint="@color/text_primary"
         android:src="@drawable/ic_add" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

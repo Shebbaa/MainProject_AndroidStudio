@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:padding="12dp">
+    <TextView android:id="@+id/tv_question_text" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Вопрос" />
+    <EditText android:id="@+id/et_answer" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Ответ" android:layout_marginTop="12dp"/>
+    <Button android:id="@+id/btn_answer" android:layout_width="match_parent" android:layout_height="48dp" android:text="Сохранить ответ" android:layout_marginTop="8dp"/>
+</LinearLayout>

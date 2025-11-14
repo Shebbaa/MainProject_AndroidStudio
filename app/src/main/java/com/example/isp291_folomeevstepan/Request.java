@@ -1,7 +1,7 @@
 package com.example.isp291_folomeevstepan;
-
 public class Request {
     public int id;
+    public int userId;
     public String phone;
     public String model;
     public String selectedDate;
@@ -9,4 +9,5 @@ public class Request {
     public String creationDate;
     public String completionDate;
     public String status;
+    public String category;
 }
