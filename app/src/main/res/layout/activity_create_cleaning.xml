@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/surface"
+        app:titleTextColor="@color/text_primary" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Профессиональная чистка"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Выберите тип услуги и укажите модель"
+                android:textColor="@color/text_secondary"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Тип чистки:"
+                android:textColor="@color/text_primary"
+                android:layout_marginBottom="4dp"/>
+
+            <Spinner
+                android:id="@+id/sp_cleaning_type"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:layout_marginBottom="16dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_model"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Модель устройства"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Телефон"
+                    android:inputType="phone"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Дополнительные комментарии"
+                    android:minLines="2"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_pick_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Выбрать время"
+                app:backgroundTint="@color/surface"
+                android:textColor="@color/text_primary"/>
+
+            <TextView
+                android:id="@+id/tv_selected_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Время не выбрано"
+                android:textColor="@color/text_secondary"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Записаться"
+                android:layout_marginTop="24dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

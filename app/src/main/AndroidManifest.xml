@@ -10,6 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ISP291_FolomeevStepan">
+
+        <activity android:name=".WelcomeActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".AdminActivity" />
         <activity android:name=".RequestDetailsActivity" />
         <activity android:name=".QuestionDetailActivity" />
@@ -20,14 +28,13 @@
         <activity android:name=".SelectServiceActivity" />
         <activity android:name=".CreateRequestActivity" />
         <activity android:name=".StatisticsActivity" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".CreatePaintActivity" />
+        <activity android:name=".CreateRepairActivity" />
+        <activity android:name=".CreateCleaningActivity" />
+
+        <activity android:name=".MainActivity" />
+
     </application>
 
 </manifest>

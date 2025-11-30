@@ -12,9 +12,12 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper;
@@ -33,6 +36,38 @@ public class MainActivity extends AppCompatActivity {
 
         TextView tvDate = findViewById(R.id.tv_date);
         String currentDate = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault()).format(new Date());
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+
+        if (bottomNav != null) {
+            bottomNav.setOnItemSelectedListener(item -> {
+                int itemId = item.getItemId();
+
+                if (itemId == R.id.nav_services) {
+                    // Если у вас ServicesFragment это Activity (судя по вашему коду ранее):
+                    startActivity(new Intent(MainActivity.this, ServicesFragment.class));
+                    return true;
+                }
+                else if (itemId == R.id.nav_questions) {
+                    // ЗАПУСК ВАШЕЙ НОВОЙ АКТИВНОСТИ С ВОПРОСАМИ
+                    startActivity(new Intent(MainActivity.this, QuestionsActivity.class));
+                    return true;
+                }
+                else if (itemId == R.id.nav_stats) {
+                    startActivity(new Intent(MainActivity.this, StatisticsFragment.class)); // Или ваша активность статистики
+                    return true;
+                }
+                else if (itemId == R.id.nav_profile) {
+                    if (session.isLoggedIn()) {
+                        startActivity(new Intent(MainActivity.this, ProfileFragment.class));
+                    } else {
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    }
+                    return true;
+                }
+
+                return false;
+            });
+        }
         if (tvDate != null) tvDate.setText(currentDate);
 
         // Отображаем ник в тулбаре, если залогинен
@@ -56,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnProfile.setOnClickListener(v -> {
             if (session.isLoggedIn()) {
-                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                startActivity(new Intent(MainActivity.this, ProfileFragment.class));
             } else {
                 // перенаправляем на логин, если не залогинен
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -64,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnStats.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, StatisticsActivity.class));
+            startActivity(new Intent(MainActivity.this, StatisticsFragment.class));
             overrideActivityTransition(Activity.OVERRIDE_TRANSITION_OPEN, android.R.anim.fade_in, android.R.anim.fade_out);
         });
 
@@ -73,13 +108,14 @@ public class MainActivity extends AppCompatActivity {
             // если пользователь залогинен — открываем выбор услуги/создание заявки,
             // иначе — предлагаем войти
             if (session.isLoggedIn()) {
-                Intent intent = new Intent(MainActivity.this, SelectServiceActivity.class);
+                Intent intent = new Intent(MainActivity.this, ServicesFragment.class);
                 startActivity(intent);
                 overrideActivityTransition(Activity.OVERRIDE_TRANSITION_OPEN, android.R.anim.fade_in, android.R.anim.fade_out);
             } else {
                 Toast.makeText(MainActivity.this, "Войдите в аккаунт для создания заявки", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
+
         });
     }
 
